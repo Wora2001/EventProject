@@ -19,7 +19,7 @@ defineProps<{
   <div class="student-class">
     <div class="student-card">
       <h2>{{ student.name + ' ' + student.surname }}</h2>
-      <span>@{{ student.time }} on {{ student.date }}</span>
+      <h2>GPA: {{ student.gpa }}</h2>
     </div>
   </div>
 </template>
