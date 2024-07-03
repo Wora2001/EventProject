@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import EventCard from '@/components/EventCard.vue'
+import EventInfo from '@/components/EventInfo.vue'
 import Event from '@/types/Event'
 import { ref } from 'vue'
+
 const events = ref<Event[]>([
   {
     id: 5928101,
@@ -11,7 +13,7 @@ const events = ref<Event[]>([
     location: 'Meow Town',
     date: 'January 28, 2022',
     time: '12.00',
-    petAllowed: true,
+    petsAllowed: true,
     organizer: 'Kay Laydee'
   },
   {
@@ -22,7 +24,7 @@ const events = ref<Event[]>([
     location: 'Flora City',
     date: 'March 14, 2022',
     time: '10.00',
-    petAllowed: true,
+    petsAllowed: true,
     organizer: 'Fern Pollin'
   },
   {
@@ -33,7 +35,7 @@ const events = ref<Event[]>([
     location: 'Playa Del carmen',
     date: 'July 22, 2022',
     time: '11.00',
-    petAllowed: true,
+    petsAllowed: true,
     organizer: 'Carey Wales'
   },
 ])
@@ -42,6 +44,7 @@ const events = ref<Event[]>([
 <template>
   <div class="events">
     <EventCard v-for="event in events" :key="event.id" :event="event"></EventCard>
+    <EventInfo v-for="event in events" :key="event.id" :event="event"></EventInfo>
   </div>
 </template>
 
