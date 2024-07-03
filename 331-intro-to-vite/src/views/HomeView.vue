@@ -36,17 +36,6 @@ const events = ref<Event[]>([
     petAllowed: true,
     organizer: 'Carey Wales'
   },
-  {
-    id: 8419981,
-    category: 'sustainability',
-    title: 'Beach Cleanup',
-    description: 'Help pick up trash along the shore.',
-    location: 'Playa Del carmen',
-    date: 'July 22, 2022',
-    time: '11.00',
-    petAllowed: true,
-    organizer: 'Carey Wales'
-  }
 ])
 </script>
 
