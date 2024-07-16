@@ -2,7 +2,18 @@
 import { ref } from 'vue';
 import type { Ref } from 'vue';
 import type { EventItem } from '@/type';
+import EventService from '@/services/EventService';
+import { error } from 'console';
 const event = ref<EventItem | null> (null)
+const id: Ref<number> = ref(123)
+
+    EventService.getEventById(id.value)
+    .then((response)=> {
+        event.value = response.data
+    }).catch(error => {
+        console.log(error)
+    })
+
 </script>
 
 <template>
