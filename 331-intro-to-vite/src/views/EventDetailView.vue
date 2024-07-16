@@ -6,8 +6,11 @@ import EventService from '@/services/EventService';
 import { error } from 'console';
 const event = ref<EventItem | null> (null)
 const id: Ref<number> = ref(123)
+const props = defineProps({
+    id: String
+})
 
-    EventService.getEventById(id.value)
+    EventService.getEventById(Number(props.id))
     .then((response)=> {
         event.value = response.data
     }).catch(error => {
