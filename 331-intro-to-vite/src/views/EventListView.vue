@@ -2,7 +2,7 @@
 import EventCard from '@/components/EventCard.vue'
 import EventInfo from '@/components/EventInfo.vue'
 import Event from '@/types/Event'
-import { ref,onMounted } from 'vue';
+import { ref, onMounted, watchEffect } from 'vue';
 import EventService from '@/services/EventService'
 import type { Axios, AxiosResponse } from 'axios';
 import type { EventItem } from '@/type';
@@ -18,9 +18,16 @@ const events = ref<Event[]>(null)
       }
     })
 
-    EventService.getEvents(2, props.page)
-    .then((response: AxiosResponse<EventItem[]>) => {
-      events.value = response.data
+    // EventService.getEvents(2, props.page)
+    // .then((response: AxiosResponse<EventItem[]>) => {
+    //   events.value = response.data
+    // })
+
+    watchEffect (() => {
+        EventService.getEvents(2, props.page)
+      .then((response: AxiosResponse<EventItem[]>) => {
+        events.value = response.data
+      })
     })
     
 
