@@ -45,8 +45,8 @@ const totalEvent = ref<number>(0)
   <div class="events">
     <EventCard v-for="event in events" :key="event.id" :event="event"></EventCard>
     <div class="panigation">
-      <RouterLink :to="{name: 'event-list-view', query: { page: page - 1, pageSize: props.pageSize} }" rel="prev" v-if="page != 1">Prev page</RouterLink>
-      <RouterLink :to="{name: 'event-list-view', query: { page: page + 1, pageSize: props.pageSize} }" rel="next" v-if="hasNextPage">Next page</RouterLink>
+      <RouterLink :to="{name: 'event-list-view', query: { page: page - 1} }" rel="prev" v-if="page != 1">Prev page</RouterLink>
+      <RouterLink :to="{name: 'event-list-view', query: { page: page + 1} }" rel="next" v-if="hasNextPage">Next page</RouterLink>
     </div>
 
   </div>
