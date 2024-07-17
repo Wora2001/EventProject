@@ -1,6 +1,5 @@
-import axios, { Axios, type AxiosResponse } from 'axios'
-import type { promises } from 'dns'
-import type { EventItem } from '@/type';
+import axios, { type AxiosResponse } from 'axios'
+import type { EventItem } from '@/types'  // Adjust the import to match your folder structure
 
 const apiClient = axios.create({
     baseURL: 'https://my-json-server.typicode.com/Anuphat5056/DBSON',
@@ -13,9 +12,9 @@ const apiClient = axios.create({
 
 export default {
     getEvents(perPage: number, page: number): Promise<AxiosResponse<EventItem[]>> {
-        return apiClient.get<EventItem[]>('/events?_limit=' + perPage + '&_page=' + page)
+        return apiClient.get<EventItem[]>(`/events?_limit=${perPage}&_page=${page}`)
     },
     getEventById(id: number): Promise<AxiosResponse<EventItem>> {
-        return apiClient.get<EventItem>('events/' + id.toString())
+        return apiClient.get<EventItem>(`/events/${id}`)
     }
 }
