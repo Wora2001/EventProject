@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { Ref } from 'vue';
 import type { EventItem } from '@/type';
 import EventService from '@/services/EventService';
-import { error } from 'console';
 const event = ref<EventItem | null> (null)
-const id: Ref<number> = ref(123)
+
 const props = defineProps({
     id: String
 })
@@ -22,6 +20,13 @@ const props = defineProps({
 <template>
     <div v-if="event">
         <h1>{{ event.title }}</h1>
+
+        <div id="nav">
+        <RouterLink :to="{name: 'event-detail', params: { id } }">Details</RouterLink> |
+        <RouterLink :to="{name: 'event-register', params: { id } }">Register</RouterLink> |
+        <RouterLink :to="{name: 'event-edit', params: { id } }">Edit</RouterLink>
+       </div>
+
         <p>{{ event.time }} on {{ event.date }} @ {{ event.location }}</p>
         <p>{{ event.description }}</p>
     </div>
