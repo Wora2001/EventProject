@@ -16,14 +16,10 @@ const props = defineProps({
     type: Number,
     required: true
   },
-  pageSize: {
-    type: Number,
-    required: true
-  },
   eventsPerPage: {
     type: Number,
     required: true,
-    default: 3
+    default: 2
   }
 })
 
@@ -36,7 +32,7 @@ watchEffect(() => {
   EventService.getEvents(props.eventsPerPage, props.page)
     .then((response: AxiosResponse<EventItem[]>) => {
       events.value = response.data
-      totalEvent.value = parseInt(response.headers['x-total-count'], 10)
+      totalEvent.value = parseInt(response.headers['x-total-count'])
     })
 })
     
