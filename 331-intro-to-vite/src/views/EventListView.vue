@@ -11,30 +11,34 @@ import { RouterLink } from 'vue-router';
 const events = ref<Event[]>(null)
 const totalEvent = ref<number>(0)
 
-    const props = defineProps({
-      page: {
-        type: Number,
-        required: true
-      },
-      pageSize: {
-        type: Number,
-        required: true
+const props = defineProps({
+  page: {
+    type: Number,
+    required: true
+  },
+  pageSize: {
+    type: Number,
+    required: true
+  },
+  eventsPerPage: {
+    type: Number,
+    required: true,
+    default: 3
   }
-    })
+})
 
-    const hasNextPage = computed(() => {
-      //first calculate the total
-      const totalPages = Math.ceil(totalEvent.value / 2)
-      return props.page.valueOf() < totalPages
-    })
+const hasNextPage = computed(() => {
+  const totalPages = Math.ceil(totalEvent.value / props.eventsPerPage)
+  return props.page < totalPages && events.value.length > 0
+})
 
-    watchEffect (() => {
-        EventService.getEvents(3, props.page)
-      .then((response: AxiosResponse<EventItem[]>) => {
-        events.value = response.data
-        totalEvent.value = response.headers['x-total-count']
-      })
+watchEffect(() => {
+  EventService.getEvents(props.eventsPerPage, props.page)
+    .then((response: AxiosResponse<EventItem[]>) => {
+      events.value = response.data
+      totalEvent.value = parseInt(response.headers['x-total-count'], 10)
     })
+})
     
 
 </script>
