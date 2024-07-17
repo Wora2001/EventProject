@@ -18,8 +18,7 @@ const props = defineProps({
   },
   eventsPerPage: {
     type: Number,
-    required: true,
-    default: 2
+    required: true
   }
 })
 
