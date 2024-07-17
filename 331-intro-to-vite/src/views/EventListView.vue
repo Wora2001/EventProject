@@ -15,7 +15,11 @@ const totalEvent = ref<number>(0)
       page: {
         type: Number,
         required: true
-      }
+      },
+      pageSize: {
+        type: Number,
+        required: true
+  }
     })
 
     const hasNextPage = computed(() => {
@@ -25,7 +29,7 @@ const totalEvent = ref<number>(0)
     })
 
     watchEffect (() => {
-        EventService.getEvents(2, props.page)
+        EventService.getEvents(3, props.page)
       .then((response: AxiosResponse<EventItem[]>) => {
         events.value = response.data
         totalEvent.value = response.headers['x-total-count']
@@ -40,9 +44,11 @@ const totalEvent = ref<number>(0)
   <!--new element-->
   <div class="events">
     <EventCard v-for="event in events" :key="event.id" :event="event"></EventCard>
-    <RouterLink :to="{name: 'event-list-view', query: { page: page - 1} }" rel="prev" v-if="page != 1">Prev page</RouterLink>
-    <RouterLink :to="{name: 'event-list-view', query: { page: page + 1} }" rel="next" v-if="hasNextPage">Next page</RouterLink>
-    
+    <div class="panigation">
+      <RouterLink :to="{name: 'event-list-view', query: { page: page - 1, pageSize: props.pageSize} }" rel="prev" v-if="page != 1">Prev page</RouterLink>
+      <RouterLink :to="{name: 'event-list-view', query: { page: page + 1, pageSize: props.pageSize} }" rel="next" v-if="hasNextPage">Next page</RouterLink>
+    </div>
+
   </div>
 </template>
 
@@ -51,5 +57,20 @@ const totalEvent = ref<number>(0)
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.panigation {
+  display: flex;
+  width: 290px;
+}
+.panigation a {
+  flex: 1;
+  text-decoration: none;
+  color: #2c3E50;
+}
+#page-prev {
+  text-align: left;
+}
+#page-next {
+  text-align: right;
 }
 </style>
