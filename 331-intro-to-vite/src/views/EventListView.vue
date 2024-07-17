@@ -6,9 +6,9 @@ import { ref,onMounted } from 'vue';
 import EventService from '@/services/EventService'
 import type { Axios, AxiosResponse } from 'axios';
 import type { EventItem } from '@/type';
+import { RouterLink } from 'vue-router';
 
 const events = ref<Event[]>(null)
-
 
 
     const props = defineProps({
@@ -31,6 +31,9 @@ const events = ref<Event[]>(null)
   <!--new element-->
   <div class="events">
     <EventCard v-for="event in events" :key="event.id" :event="event"></EventCard>
+    <RouterLink :to="{name: 'event-list-view', query: { page: page - 1} }" rel="prev" v-if="page != 1">Prev page</RouterLink>
+    <RouterLink :to="{name: 'event-list-view', query: { page: page + 1} }" rel="next" v-if="page + 1">Next page</RouterLink>
+    
   </div>
 </template>
 
