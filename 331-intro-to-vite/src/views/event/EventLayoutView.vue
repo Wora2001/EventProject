@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
-import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useEventStore } from '@/stores/event';
 
