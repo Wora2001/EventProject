@@ -19,7 +19,7 @@ const props = defineProps({
 })
 onMounted(() => {
   watchEffect(() => {
-    EventService.getEvents(props.pageLimit, props.page)
+    EventService.getEvents(3, props.page)
       .then((response: AxiosResponse<Event[]>) => {
         events.value = response.data
         totalEvent.value = response.headers['x-total-count']
@@ -51,7 +51,6 @@ const hasNextPage = computed(() => {
       >
         Prev Page</RouterLink
       >
-    
       <RouterLink
         :to="{ name: 'event-list-view', query: { page: page + 1 } }"
         rel="next"

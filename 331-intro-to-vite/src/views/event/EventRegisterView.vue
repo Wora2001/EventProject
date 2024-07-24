@@ -1,16 +1,24 @@
 <script setup lang="ts">
 import type { Event } from '@/type';
-import type { PropType } from 'vue';
+import EventService from '@/services/EventService';
+import { ref, onMounted, toRefs } from 'vue';
+import EventCard from '@/components/EventCard.vue'
+import { useRouter } from 'vue-router';
+import { useMessageStore } from '@/stores/message';
+import type { AxiosResponse } from 'axios';
 
-defineProps({
-    event: {
-        type: Object as PropType<Event>,
-        required: true
-    }
-})
+const props = defineProps<{
+    event: Event
+}>()
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const { event } = toRefs(props)
+const register = () => {
+    //
+}
+
 
 </script>
 
 <template>
-    <p>register from here</p>
+    <button @click="register">Register</button>
 </template>

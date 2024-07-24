@@ -11,27 +11,8 @@ const apiClient = axios.create({
 })
 
 export default {
-  getEvents(pageLimit: number[], page: number): Promise<AxiosResponse<Event[]>> {
-    // Validate page number
-    if (page <= 0 || page > pageLimit.length) {
-      throw new Error(`Invalid page number ${page}.`)
-    }
-
-    // Calculate start index based on valid page and pageLimit
-    let startIndex = 0
-    for (let i = 1; i < page; i++) {
-      // Start loop from 1 to skip index 0
-      startIndex += pageLimit[i]
-    }
-    const limit = pageLimit[page]
-
-    // Prepare query parameters for pagination
-    const params = {
-      _start: startIndex,
-      _limit: limit
-    }
-
-    return apiClient.get<Event[]>('/events', { params })
+  getEvents(perPage: number, page: number): Promise<AxiosResponse<Event[]>> {
+    return apiClient.get<Event[]>(`/events?_limit=${perPage}&_page=${page}`)
   },
 
   getEventById(id: number): Promise<AxiosResponse<Event>> {
