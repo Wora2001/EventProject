@@ -51,6 +51,7 @@ const hasNextPage = computed(() => {
       >
         Prev Page</RouterLink
       >
+    
       <RouterLink
         :to="{ name: 'event-list-view', query: { page: page + 1 } }"
         rel="next"
