@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { EventItem } from '@/type';
+import type { Event } from '@/type';
 import EventService from '@/services/EventService';
 import { RouterView } from 'vue-router';
 import { useRouter } from 'vue-router';
 
-const event = ref<EventItem | null> (null)
+const event = ref<Event | null> (null)
 const router = useRouter()
 
 const props = defineProps({
