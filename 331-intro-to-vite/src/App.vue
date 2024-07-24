@@ -62,7 +62,7 @@ h2 {
     background-color: transparent;
   }
 }
-#flahMessage {
+#flashMessage {
   animation: yellofade 3s ease-in-out;
 }
 </style>
