@@ -10,11 +10,11 @@ const props = defineProps<{
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { event } = toRefs(props)
 const router = useRouter()
-const storeEdit = useMessageStore()
+const store = useMessageStore()
 const edit = () => {
-    storeEdit.updateMessage('You are succesfully update the data for ' + props.event.title)
+    store.updateMessage('You are succesfully update the data for ' + props.event.title)
     setTimeout(() => {
-        storeEdit.resetMessage()
+        store.resetMessage()
     }, 3000)
     router.push({ name: 'event-detail-view', params: { id: props.event.id } })
 }
