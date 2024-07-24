@@ -5,6 +5,7 @@ import { createPinia } from 'pinia'
 
 import App from './App.vue'
 import { createAppRouter } from './router'
+import nProgress from 'nprogress'
 
 const app = createApp(App)
 const pageLimit = [null, 1, 3, 2, 1] // *** null เป็น skip เพราะ page เริ่มที่ 1 *** //
