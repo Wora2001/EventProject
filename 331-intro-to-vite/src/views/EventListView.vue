@@ -4,6 +4,7 @@ import type { Event } from '@/type'
 import { ref, onMounted, watchEffect, computed } from 'vue'
 import EventService from '@/services/EventService'
 import type { AxiosResponse } from 'axios'
+import nProgress from 'nprogress'
 
 const events = ref<Event[]>([])
 const totalEvent = ref<number>(0)
@@ -19,6 +20,7 @@ const props = defineProps({
 })
 onMounted(() => {
   watchEffect(() => {
+    nProgress.start()
     EventService.getEvents(3, props.page)
       .then((response: AxiosResponse<Event[]>) => {
         events.value = response.data
@@ -26,6 +28,9 @@ onMounted(() => {
       })
       .catch((error) => {
         console.error('There was an error!', error)
+      })
+      .finally(() => {
+        nProgress.done()
       })
   })
 })
