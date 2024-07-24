@@ -1,5 +1,5 @@
 // router/index.ts
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory} from 'vue-router'
 import EventListView from '@/views/EventListView.vue'
 import AboutView from '@/views/AboutView.vue'
 import StudentListView from '@/views/StudentListView.vue'
@@ -106,12 +106,12 @@ const router = createRouter({
         component: NetworkErrorView
       },
     ],
-    scrollBehavior(to, from,savedPosition) {
+    scrollBehavior(to, from, savedPosition) {
       if (savedPosition) {
         return savedPosition
-      } else { 
-        return { top:0 }
-       }
+      } else {
+        return { top: 0 }
+      }
     }
   })
   router.beforeEach(() => {
