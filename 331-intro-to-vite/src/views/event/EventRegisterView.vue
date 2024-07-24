@@ -12,8 +12,14 @@ const props = defineProps<{
 }>()
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { event } = toRefs(props)
+const router = useRouter()
+const store = useMessageStore()
 const register = () => {
-    //
+    store.updateMessage('You are succesfully registered for ' + props.event.title)
+    setTimeout(() => {
+        store.resetMessage()
+    }, 3000)
+    router.push({ name: 'event-detail-view', params: { id: props.event.id } })
 }
 
 
