@@ -13,31 +13,23 @@ const props = defineProps({
     type: Number,
     required: true
   },
-  pageLimit: {
-    type: Array<number>,
+  eventsPerPage: {
+    type: Number,
     required: true
   }
 })
 onMounted(() => {
   watchEffect(() => {
-    nProgress.start()
-    EventService.getEvents(3, props.page)
-      .then((response: AxiosResponse<Event[]>) => {
-        events.value = response.data
-        totalEvent.value = response.headers['x-total-count']
-      })
-      .catch((error) => {
-        console.error('There was an error!', error)
-      })
-      .finally(() => {
-        nProgress.done()
-      })
+  EventService.getEvents(props.eventsPerPage, props.page)
+    .then((response: AxiosResponse<Event[]>) => {
+      events.value = response.data
+      totalEvent.value = parseInt(response.headers['x-total-count'])
+    })
   })
 })
 const hasNextPage = computed(() => {
-  // calculate total page
-  const totalPages = props.pageLimit.length - 1
-  return props.page.valueOf() < totalPages
+  const totalPages = Math.ceil(totalEvent.value / props.eventsPerPage)
+  return props.page < totalPages && events.value.length > 0
 })
 </script>
 
