@@ -1,11 +1,8 @@
 <script setup lang="ts">
 import type { Event } from '@/type';
-import EventService from '@/services/EventService';
-import { ref, onMounted, toRefs } from 'vue';
-import EventCard from '@/components/EventCard.vue'
+import { toRefs } from 'vue';
 import { useRouter } from 'vue-router';
 import { useMessageStore } from '@/stores/message';
-import type { AxiosResponse } from 'axios';
 
 const props = defineProps<{
     event: Event
