@@ -45,6 +45,8 @@ const hasNextPage = computed(() => {
         rel="prev"
         v-if="page != 1"
         id="page-prev"
+        class="float-left"
+
       >
         Prev Page</RouterLink
       >
@@ -53,6 +55,7 @@ const hasNextPage = computed(() => {
         rel="next"
         v-if="hasNextPage"
         id="page-next"
+        class="float-right"
       >
         Next Page</RouterLink
       >
