@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import type { Event } from '@/type';
-import { RouterLink } from 'vue-router';
+import type { Event } from '@/type'
+import { RouterLink } from 'vue-router'
 defineProps<{
   event: Event
 }>()
 </script>
 
 <template>
-  <RouterLink class="event-link" :to="{name: 'event-detail-view', params:{id: event?.id}}">
+  <RouterLink class="event-link" :to="{ name: 'event-detail-view', params: { id: event?.id } }">
     <div class="event-class">
       <div class="event-card">
         <h2>{{ event?.title }}</h2>
         <span>@{{ event?.time }} on {{ event?.date }}</span>
       </div>
     </div>
-</RouterLink>
+  </RouterLink>
 </template>
 
 <style scoped>

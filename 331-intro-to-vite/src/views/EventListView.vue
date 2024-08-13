@@ -19,11 +19,12 @@ const props = defineProps({
 })
 onMounted(() => {
   watchEffect(() => {
-  EventService.getEvents(props.eventsPerPage, props.page)
-    .then((response: AxiosResponse<Event[]>) => {
-      events.value = response.data
-      totalEvent.value = parseInt(response.headers['x-total-count'])
-    })
+    EventService.getEvents(props.eventsPerPage, props.page).then(
+      (response: AxiosResponse<Event[]>) => {
+        events.value = response.data
+        totalEvent.value = parseInt(response.headers['x-total-count'])
+      }
+    )
   })
 })
 const hasNextPage = computed(() => {
@@ -72,7 +73,7 @@ const hasNextPage = computed(() => {
 .panigation a {
   flex: 1;
   text-decoration: none;
-  color: #2c3E50;
+  color: #2c3e50;
 }
 #page-prev {
   text-align: left;

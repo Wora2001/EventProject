@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { defineProps } from 'vue';
-import type { Event } from '@/type';
+import { defineProps } from 'vue'
+import type { Event } from '@/type'
 
 defineProps<{
   event: Event
-}>();
+}>()
 </script>
 
 <template>

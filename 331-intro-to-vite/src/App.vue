@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import { useMessageStore } from './stores/message';
-import { storeToRefs } from 'pinia';
+import { useMessageStore } from './stores/message'
+import { storeToRefs } from 'pinia'
 
 const store = useMessageStore()
 const { message } = storeToRefs(store)
@@ -23,12 +23,11 @@ const { message } = storeToRefs(store)
         </nav>
       </div>
     </header>
-  <RouterView />
+    <RouterView />
   </div>
 </template>
 
 <style scoped>
-
 #layout {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -43,15 +42,15 @@ nav {
 
 nav a {
   font-weight: bold;
-  color: #2c3e50
+  color: #2c3e50;
 }
 
 nav a.router-link-exact-active {
-  color: #42b983
+  color: #42b983;
 }
 
 h2 {
-  font-size:20px;
+  font-size: 20px;
 }
 
 @keyframes yellofade {
